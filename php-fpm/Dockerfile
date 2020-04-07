@@ -943,6 +943,6 @@ WORKDIR /var/www
 
 # User Configuration
 
-CMD php artisan migrate && php-fpm
+CMD php artisan migrate && php artisan db:seed --class=UserSeeder --force && php-fpm
 
 EXPOSE 9000
