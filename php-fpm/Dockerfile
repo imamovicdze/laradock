@@ -941,6 +941,8 @@ ENV LC_ALL ${LOCALE}
 
 WORKDIR /var/www
 
-CMD ["php-fpm"]
+# User Configuration
+
+CMD php artisan migrate && php artisan db:seed --class=UserSeeder && php-fpm
 
 EXPOSE 9000

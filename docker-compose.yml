@@ -60,7 +60,6 @@ services:
         context: ./workspace
         args:
           - CHANGE_SOURCE=${CHANGE_SOURCE}
-          - SHELL_OH_MY_ZSH=${SHELL_OH_MY_ZSH}
           - UBUNTU_SOURCE=${UBUNTU_SOURCE}
           - LARADOCK_PHP_VERSION=${PHP_VERSION}
           - LARADOCK_PHALCON_VERSION=${PHALCON_VERSION}
@@ -154,8 +153,6 @@ services:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
         - "${WORKSPACE_SSH_PORT}:22"
-        - "${WORKSPACE_BROWSERSYNC_HOST_PORT}:3000"
-        - "${WORKSPACE_BROWSERSYNC_UI_HOST_PORT}:3001"
         - "${WORKSPACE_VUE_CLI_SERVE_HOST_PORT}:8080"
         - "${WORKSPACE_VUE_CLI_UI_HOST_PORT}:8000"
       tty: true
@@ -255,6 +252,7 @@ services:
         - FAKETIME=${PHP_FPM_FAKETIME}
       depends_on:
         - workspace
+        - mysql
       networks:
         - backend
       links:
